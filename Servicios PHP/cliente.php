@@ -7,11 +7,16 @@
         
 
 
-        $parametros = array('id'=>'1','nombre'=>'UAA2');
+        $parametros = array(
+                'id_recibo'=>'1',
+                'id_maestro'=>'2',
+                'cantidad'=>'3',
+                'fecha'=>'enero 3',
+                );
         
         $client = new SoapClient($servicio);
 
-        $result = $client->registrarUniversidad($parametros);
+        $result = $client->registrarReciboSaliente($parametros);
 
         echo $result;        
 
