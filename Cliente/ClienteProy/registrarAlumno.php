@@ -39,13 +39,16 @@ and open the template in the editor.
             if (isset($_GET['celular'])) {
                     $cel = $_GET['celular'];
             }
-            /*if (isset($_GET['fecha'])) {
+            if (isset($_GET['fecha'])) {
                     $fecha = $_GET['fecha'];
-            }*/
+            }
+            if (isset($_GET['tutor'])) {
+                    $tuto = $_GET['tutor'];
+            }
             $alumno = array('id'=>$id,'nombre'=>$nom,'ap_pat'=>$app,'ap_mat'=>$apm,
                 'edad'=>$ed,'domicilio'=>$dom,'telefono'=>$tel,
-                'celular'=>$cel);
-            $peticion = array('arg0' => $alumno);
+                'celular'=>$cel, 'tutor'=>$tuto, 'fechaInscripcion'=>$fecha);
+            $peticion = array('al' => $alumno);
             $result = $client -> registrarAlumno($peticion);
             echo "Registro Insertado";
         }
@@ -54,15 +57,16 @@ and open the template in the editor.
         <h2 align="center"><font color="blue">Nuevo Registro</font></h2>
 	
         <form action="registrarAlumno.php" method="get" align="center">
-		ID: <input type="text" name="id"><br><br>
+                ID: <input type="number" name="id"><br><br>
                 Nombre: <input type="text" name="nombre"><br><br>
 		Apellido Paterno: <input type="text" name="app"><br><br>
                 Apellido Materno: <input type="text" name="apm"><br><br>
-                Edad: <input type="text" name="edad"><br><br>
+                Edad: <input type="number" name="edad"><br><br>
                 Domicilio: <input type="text" name="domicilio"><br><br>
-                Telefono: <input type="text" name="telefono"><br><br>
-                Celular: <input type="text" name="celular"><br><br>
-                <!--Fecha de Inscripcion: <input type="date" name="fecha"><br><br>-->
+                Telefono: <input type="number" name="telefono"><br><br>
+                Celular: <input type="number" name="celular"><br><br>
+                Fecha de Inscripcion: <input type="date" name="fecha"><br><br>
+                Tutor: <input type="text" name="tutor"><br><br>
 		<input type="submit" name="submit" value="Inscribir !!">
 	</form>
         <h2 align="right"><a href="alumnos.php">Atrás</a></h2>
