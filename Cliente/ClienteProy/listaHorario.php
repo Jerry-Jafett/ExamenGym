@@ -10,12 +10,12 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h1 align="center"><font color="red">Registros de Disciplinas</font></h1>
+        <h1 align="center"><font color="red">Registros de Horarios</font></h1>
         <?php
         $servicio = "http://localhost:8080/ProyectoGym/registro_personas?WSDL"; //url del servicio
         
         $client = new SoapClient($servicio);
-        $result = $client->getAlumnos();
+        $result = $client->getHorarios();
         $result = get_object_vars($result);
         $r = $result['return'];
         
@@ -23,41 +23,24 @@ and open the template in the editor.
         <table border="1" align="center">
             <tr>
                 <td><b>ID</b></td>
-                <td><b>Nombre</b></td>
-                <td><b>Apellido Paterno</b></td>
-                <td><b>Apellido Materno</b></td>
-                <td><b>Edad</b></td>
-                <td><b>Domicilio</b></td>
-                <td><b>Telefono</b></td>
-                <td><b>Celular</b></td>
-                <td><b>Fecha de Inscripcion</b></td>
+                <td><b>ID_Maestro</b></td>
+                <td><b>ID_Sucursal</b></td>
+                <td><b>ID_Disciplina</b></td>
             </tr>
             <?php
                 foreach($r as $al){
                     $al = get_object_vars($al);
-                    $idAlumno = $al['id'];
-                    $nom = $al['nombre'];
-                    $app = $al['ap_pat'];
-                    $apm = $al['ap_mat'];
-                    $dom = $al['domicilio'];
-                    $tel = $al['telefono'];
-                    $cel = $al['celular'];
-                    $ed = $al['edad'];
-                    $fi = $al['fechaInscripcion'];
-                
+                    $idHorario = $al['id'];
+                    $id_ma = $al['id_maestro'];
+                    $id_su = $al['id_sucursal'];
+                    $id_dis = $al['id_disciplina'];                
             ?>
             
             <tr>
-
-                <td align="center"><?php echo $idAlumno;?></td>
-                <td><?php echo $nom; ?></td>
-                <td><?php echo $app; ?></td>
-                <td><?php echo $apm; ?></td>
-                <td><?php echo $dom; ?></td>
-                <td><?php echo $tel; ?></td>
-                <td><?php echo $cel; ?></td>
-                <td><?php echo $ed; ?></td>
-                <td><?php echo $fi; ?></td>
+                <td align="center"><?php echo $idHorario;?></td>
+                <td><?php echo $id_ma; ?></td>
+                <td><?php echo $id_su; ?></td>
+                <td><?php echo $id_dis; ?></td>
             </tr>
                 <?php
                 }
