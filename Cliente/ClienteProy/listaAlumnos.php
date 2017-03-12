@@ -32,6 +32,7 @@ and open the template in the editor.
                 <td><b>Telefono</b></td>
                 <td><b>Celular</b></td>
                 <td><b>Fecha de Inscripcion</b></td>
+                <td><b>Tutor</b></td>
             </tr>
             <?php
                 foreach($r as $al){

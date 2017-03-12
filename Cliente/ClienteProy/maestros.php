@@ -14,7 +14,6 @@ and open the template in the editor.
 	<h1 align="center">Menu de Maestros<br><font color="red">"The Campions Factory"</font></h1>
 	<h3>
 	<ul align="left">
-		<li><a href="obtenerMaestro.php"><b>Obtener Maestro</b></a></li>
 		<li><a href="listaMaestro.php"><b>Lista de Maestros</b></a></li>
 		<li><a href="registrarMaestro.php"><b>Registrar Maestro</b></a></li>
 	</ul>
