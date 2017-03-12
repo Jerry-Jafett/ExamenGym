@@ -55,6 +55,17 @@
         'obtiene una universidad por id'
 		);
 
+	//get universidades
+	$server->register('getUniversidades',
+		array(),
+		array('return'=>'xsd:Array'),
+		'urn:wsGym',
+        'urn:wsGym#getUniversidades',
+        'rpc',
+        'encoded',
+        'obtiene todas las universidades'
+		);
+
 	//registrar reciboEntrante
 	$server->register('registrarReciboEntrante',
 		array('recibo'=>'tns:reciboEntrante'),
@@ -77,6 +88,16 @@
         'Agrega una universidad'
 		);
 
+	//get recibosEntrantes
+	$server->register('getRecibosEntrantes',
+		array(),
+		array('return'=>'xsd:Array'),
+		'urn:wsGym',
+        'urn:wsGym#registrarRecibosEntrantes',
+        'rpc',
+        'encoded',
+        'Agrega una universidad'
+		);
 	//registrar reciboSaliente
 	$server->register('registrarReciboSaliente',
 		array('recibo'=>'tns:reciboSaliente'),
@@ -94,6 +115,17 @@
 		array('return'=>'xsd:Array'),
 		'urn:wsGym',
         'urn:wsGym#registrarReciboSaliente',
+        'rpc',
+        'encoded',
+        'Agrega una universidad'
+		);
+
+	//get recibosSalientes
+	$server->register('getRecibosSalientes',
+		array(),
+		array('return'=>'xsd:Array'),
+		'urn:wsGym',
+        'urn:wsGym#registrarRecibosSalientes',
         'rpc',
         'encoded',
         'Agrega una universidad'
@@ -134,6 +166,33 @@
     	return $solo;
     }
 
+    function getUniversidades(){
+    	include('conectorsql.php');
+    	$sql = "select * from universidades";
+    	// return $sql;
+    	$id = 0;
+    	$nom = '0';
+    	$lista = array();
+    	$i = 0;
+    	if($res = $conn->query($sql)){
+    		while($obj = $res->fetch_assoc()){
+    			$id = $obj['Id_universidad'];
+    			$nom = $obj['Nombre'];
+    			$uni = array();
+    			$uni['id'] = $id;
+    			$uni['nombre'] = $nom;
+    			$lista[$i++] = $uni;
+    		}
+    		
+    		// return $obj;
+    	}
+    	// else
+    		// return "neee";
+
+
+    	return $lista;
+    }
+
     function registrarReciboEntrante($recibo){
     	include('conectorsql.php');
     	$idr = $recibo['id_recibo'];
@@ -166,6 +225,24 @@
     	return $recibo;
     }
 
+    function getRecibosEntrantes(){
+    	include('conectorsql.php');
+    	$sql = "Select * from recibos_entrante";
+    	$recibos = array();
+
+    	if($res = $conn->query($sql)){
+    		while($obj = $res->fetch_assoc()){
+    			$rec['Id_reciboE'] = $obj['Id_reciboE'];
+	    		$rec['Id_alumno'] = $obj['Id_alumno'];
+	    		$rec['Cantidad'] = $obj['Cantidad'];
+	    		$rec['Fecha'] = $obj['Fecha'];
+	    		array_push($recibos, $rec);
+    		}
+    	}
+
+    	return $recibos;
+    }
+
     function registrarReciboSaliente($recibo){
     	include('conectorsql.php');
     	$idr = $recibo['id_recibo'];
@@ -193,7 +270,24 @@
     		$recibo['Cantidad'] = $obj['Cantidad'];
     		$recibo['Fecha'] = $obj['Fecha'];
     	}
-
     	return $recibo;
+    }
+
+    function getRecibosSalientes(){
+    	include('conectorsql.php');
+    	$sql = "Select * from recibos_saliente";
+    	$recibos = array();
+
+    	if($res = $conn->query($sql)){
+    		while($obj = $res->fetch_assoc()){
+    			$rec['Id_reciboS'] = $obj['Id_reciboS'];
+	    		$rec['Id_maestro'] = $obj['Id_maestro'];
+	    		$rec['Cantidad'] = $obj['Cantidad'];
+	    		$rec['Fecha'] = $obj['Fecha'];
+	    		array_push($recibos, $rec);
+    		}
+    	}
+
+    	return $recibos;
     }
 ?>
