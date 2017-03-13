@@ -45,19 +45,44 @@ and open the template in the editor.
             if (isset($_GET['tutor'])) {
                     $tuto = $_GET['tutor'];
             }
+            if (isset($_GET['costo'])) {
+                    $costo = $_GET['costo'];
+            }
             $alumno = array('id'=>$id,'nombre'=>$nom,'ap_pat'=>$app,'ap_mat'=>$apm,
                 'edad'=>$ed,'domicilio'=>$dom,'telefono'=>$tel,
                 'celular'=>$cel, 'tutor'=>$tuto, 'fechaInscripcion'=>$fecha);
             $peticion = array('al' => $alumno);
             $result = $client -> registrarAlumno($peticion);
             echo "Registro Insertado";
+            
+            //url del servicio
+            $servicio = 'http://localhost/ClienteProy/servicio.php?wsdl'; 
+            $client = new SoapClient($servicio);
+            $parametros = array(
+                 'id_recibo'=>'1',
+                 'id_alumno'=>$id,
+                 'cantidad'=>$costo,
+                 'fecha'=>$fecha,
+                 );
+
+            $result = $client->registrarReciboEntrante($parametros);
+            echo 'Pago Efectuado !!';
+        }
+        $servicio = "http://localhost:8080/ProyectoGym/registro_personas?WSDL"; //url del servicio
+        $client = new SoapClient($servicio);
+        $result = $client->getAlumnos();
+        $result = get_object_vars($result);
+        $r = $result['return'];
+        foreach($r as $al){
+            $al = get_object_vars($al);
+            $idAlumno = $al['id'];
         }
         ?>
         
         <h2 align="center"><font color="blue">Nuevo Registro</font></h2>
 	
         <form action="registrarAlumno.php" method="get" align="center">
-                ID: <input type="number" name="id"><br><br>
+            ID: <input type="number" name="id" value="<?php echo $idAlumno + 1;?>"><br><br>
                 Nombre: <input type="text" name="nombre"><br><br>
 		Apellido Paterno: <input type="text" name="app"><br><br>
                 Apellido Materno: <input type="text" name="apm"><br><br>
@@ -67,6 +92,7 @@ and open the template in the editor.
                 Celular: <input type="number" name="celular"><br><br>
                 Fecha de Inscripcion: <input type="date" name="fecha"><br><br>
                 Tutor: <input type="text" name="tutor"><br><br>
+                Inscripcion($): <input type="number" name="costo"><br><br>
 		<input type="submit" name="submit" value="Inscribir !!">
 	</form>
         <h2 align="right"><a href="alumnos.php">Atrás</a></h2>

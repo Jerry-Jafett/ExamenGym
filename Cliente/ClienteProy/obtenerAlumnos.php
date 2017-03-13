@@ -47,17 +47,19 @@ and open the template in the editor.
             $cel = $r['celular'];
             $ed = $r['edad'];
             $fi = $r['fechaInscripcion'];
+            $tu = $r['tutor'];
             ?>
             <tr>
                 <td align="center"><?php echo $idAlumno;?></td>
                 <td><?php echo $nom; ?></td>
                 <td><?php echo $app; ?></td>
                 <td><?php echo $apm; ?></td>
+                <td><?php echo $ed; ?></td>
                 <td><?php echo $dom; ?></td>
                 <td><?php echo $tel; ?></td>
                 <td><?php echo $cel; ?></td>
-                <td><?php echo $ed; ?></td>
                 <td><?php echo $fi; ?></td>
+                <td><?php echo $tu; ?></td>
             </tr>
                 <?php
         }

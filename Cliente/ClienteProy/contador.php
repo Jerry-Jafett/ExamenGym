@@ -11,12 +11,11 @@ and open the template in the editor.
     </head>
     <body>
         <br>
-	<h1 align="center">Menu de Disciplinas<br><font color="red">"The Campions Factory"</font></h1>
+	<h1 align="center">Menu del Contador<br><font color="red">"The Campions Factory"</font></h1>
 	<h3>
 	<ul align="left">
-		<li><a href="obtenerDisciplina.php"><b>Obtener Disciplina</b></a></li>
-		<li><a href="listaDisciplinas.php"><b>Lista de Disciplinas</b></a></li>
-		<!--<li><a href="registrarDisciplina.php"><b>Registrar Disciplina</b></a></li>-->
+		<li><a href="entrantes.php"><b>Obtener Recibos Entrantes</b></a></li>
+		<li><a href="salientes.php"><b>Obtener Recibos Salientes</b></a></li>
 	</ul>
 	</h3>
 	<h2 align="right"><a href="menu.php">Menu Principal</a></h2>

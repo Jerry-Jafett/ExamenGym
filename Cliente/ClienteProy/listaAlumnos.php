@@ -20,7 +20,32 @@ and open the template in the editor.
         $result = get_object_vars($result);
         $r = $result['return'];
         
+        if (isset($_GET['submit'])) {
+            if (isset($_GET['id'])) {
+                    $idAlumno = $_GET['id'];
+            }
+            if (isset($_GET['costo'])) {
+                    $costo = $_GET['costo'];
+            }
+            if (isset($_GET['fecha'])) {
+                    $fecha = $_GET['fecha'];
+            }
+            
+            //url del servicio
+            $servicio = 'http://localhost/ClienteProy/servicio.php?wsdl'; 
+            $client = new SoapClient($servicio);
+            $parametros = array(
+                 'id_recibo'=>'1',
+                 'id_alumno'=>$idAlumno,
+                 'cantidad'=>$costo,
+                 'fecha'=>$fecha,
+                 );
+
+            $result = $client->registrarReciboEntrante($parametros);
+            echo 'Pago Efectuado !!';
+        }
         ?>
+        <h2 align="right"><a href="alumnos.php">Atrás</a></h2>
         <table border="1" align="center">
             <tr>
                 <td><b>ID</b></td>
@@ -31,8 +56,9 @@ and open the template in the editor.
                 <td><b>Domicilio</b></td>
                 <td><b>Telefono</b></td>
                 <td><b>Celular</b></td>
-                <td><b>Fecha de Inscripcion</b></td>
+                <td align="center"><b>Fecha de Inscripcion</b></td>
                 <td><b>Tutor</b></td>
+                <td align="center"><b>Pagar Colegiatura</b></td>
             </tr>
             <?php
                 foreach($r as $al){
@@ -41,12 +67,12 @@ and open the template in the editor.
                     $nom = $al['nombre'];
                     $app = $al['ap_pat'];
                     $apm = $al['ap_mat'];
+                    $ed = $al['edad'];
                     $dom = $al['domicilio'];
                     $tel = $al['telefono'];
                     $cel = $al['celular'];
-                    $ed = $al['edad'];
                     $fi = $al['fechaInscripcion'];
-                
+                    $tu = $al['tutor'];
             ?>
             
             <tr>
@@ -55,11 +81,20 @@ and open the template in the editor.
                 <td><?php echo $nom; ?></td>
                 <td><?php echo $app; ?></td>
                 <td><?php echo $apm; ?></td>
+                <td><?php echo $ed; ?></td>
                 <td><?php echo $dom; ?></td>
                 <td><?php echo $tel; ?></td>
                 <td><?php echo $cel; ?></td>
-                <td><?php echo $ed; ?></td>
                 <td><?php echo $fi; ?></td>
+                <td><?php echo $tu; ?></td>
+                <td>
+                    <form action="listaAlumnos.php" method="get" align="center">
+                    <input type="hidden" name="id" value="<?php echo $idAlumno;?>">
+                    Monto($): <input type="number" name="costo"><br><br>
+                    Fecha: <input type="date" name="fecha"><br><br>
+                    <input type="submit" name="submit" value="Pagar !!">
+                    </form>
+                </td>
             </tr>
                 <?php
                 }
