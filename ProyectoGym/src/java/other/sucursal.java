@@ -11,6 +11,6 @@ package other;
  */
 public class sucursal {
     
-    public int id;
-    public String nombre;
+    public int id, telefono;
+    public String nombre, direccion;
 }

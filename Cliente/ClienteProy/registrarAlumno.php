@@ -48,9 +48,12 @@ and open the template in the editor.
             if (isset($_GET['costo'])) {
                     $costo = $_GET['costo'];
             }
+            if (isset($_GET['dis'])) {
+                    $dis = $_GET['dis'];
+            }
             $alumno = array('id'=>$id,'nombre'=>$nom,'ap_pat'=>$app,'ap_mat'=>$apm,
                 'edad'=>$ed,'domicilio'=>$dom,'telefono'=>$tel,
-                'celular'=>$cel, 'tutor'=>$tuto, 'fechaInscripcion'=>$fecha);
+                'celular'=>$cel, 'tutor'=>$tuto, 'fechaInscripcion'=>$fecha, 'disciplina'=>$dis);
             $peticion = array('al' => $alumno);
             $result = $client -> registrarAlumno($peticion);
             echo "Registro Insertado";
@@ -92,6 +95,7 @@ and open the template in the editor.
                 Celular: <input type="number" name="celular"><br><br>
                 Fecha de Inscripcion: <input type="date" name="fecha"><br><br>
                 Tutor: <input type="text" name="tutor"><br><br>
+                ID Disciplina <input type="number" name="dis"><br><br>
                 Inscripcion($): <input type="number" name="costo"><br><br>
 		<input type="submit" name="submit" value="Inscribir !!">
 	</form>

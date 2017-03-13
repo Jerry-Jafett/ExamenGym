@@ -19,8 +19,6 @@ and open the template in the editor.
 		<li><a href="maestros.php"><b>Maestros</b></a></li>
 		<li><a href="horarios.php"><b>Horarios</b></a></li>
                 <li><a href="contador.php"><b>Contador</b></a></li>
-                <li><a href="servicio.php"><b>Servicio php</b></a></li>
-                <li><a href="cliente.php"><b>Prueba servicio php</b></a></li>
 		<br>
 	</ul>
 	</h3>

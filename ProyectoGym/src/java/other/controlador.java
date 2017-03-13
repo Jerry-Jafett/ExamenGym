@@ -39,6 +39,7 @@ public class controlador {
             // Do something with the Connection
         } catch (SQLException ex) {
             // handle any errors
+            System.out.println("error!!!");
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
@@ -84,7 +85,7 @@ public class controlador {
         ResultSet rs = null;
         String query;
         query = "insert into alumnos (id_alumnos,nombre,apellido_paterno,"
-                + "apellido_materno,edad,domicilio,telefono,celular)"
+                + "apellido_materno,edad,domicilio,telefono,celular,fecha_inscripcion,tutor,id_disciplina)"
                 + " values (0,"
                 + "'"+al.nombre+"',"
                 + "' " + al.ap_pat +"',"
@@ -92,7 +93,10 @@ public class controlador {
                 + " " + al.edad +","
                 + "' " + al.domicilio +"',"
                 + "' " + al.telefono +"',"
-                + "' " + al.celular +"'"
+                + "' " + al.celular +"',"
+                + "' " + al.fechaInscripcion +"',"
+                + "' " + al.tutor +"',"
+                + "' " + al.disciplina +"'"
                 + ");";
         
         try{
@@ -158,6 +162,8 @@ public class controlador {
                 al.telefono = rs.getString("telefono");
                 al.celular = rs.getString("celular");
                 al.fechaInscripcion = rs.getString("fecha_inscripcion");
+                al.tutor = rs.getString("tutor");
+                al.disciplina = rs.getInt("id_disciplina");
                 la.add(al);
             }                                 
             
@@ -228,6 +234,8 @@ public class controlador {
                 al.telefono = rs.getString("telefono");
                 al.celular = rs.getString("celular");
                 al.fechaInscripcion = rs.getString("fecha_inscripcion");
+                al.tutor = rs.getString("tutor");
+                al.disciplina = rs.getInt("id_disciplina");
             }
             
         } catch (SQLException ex) {

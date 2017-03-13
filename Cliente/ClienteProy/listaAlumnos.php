@@ -58,6 +58,7 @@ and open the template in the editor.
                 <td><b>Celular</b></td>
                 <td align="center"><b>Fecha de Inscripcion</b></td>
                 <td><b>Tutor</b></td>
+                <td><b>Disciplina</b></td>
                 <td align="center"><b>Pagar Colegiatura</b></td>
             </tr>
             <?php
@@ -72,6 +73,7 @@ and open the template in the editor.
                     $tel = $al['telefono'];
                     $cel = $al['celular'];
                     $fi = $al['fechaInscripcion'];
+                    $dis = $al['disciplina'];
                     $tu = $al['tutor'];
             ?>
             
@@ -87,6 +89,7 @@ and open the template in the editor.
                 <td><?php echo $cel; ?></td>
                 <td><?php echo $fi; ?></td>
                 <td><?php echo $tu; ?></td>
+                <td><?php echo $dis; ?></td>
                 <td>
                     <form action="listaAlumnos.php" method="get" align="center">
                     <input type="hidden" name="id" value="<?php echo $idAlumno;?>">
